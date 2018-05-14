@@ -35,7 +35,8 @@ public class StylusSearchTest extends WebDriverTestBase{
         //Making sure we have found what we need by trying to find "purple" in title or URL
         By phoneTitleLocator = By.xpath("//*[@id=\"product-block\"]/header/div[1]/h1");
         WebElement phoneTitle = webDriver.findElement(phoneTitleLocator);
-        assertTrue(phoneTitle.getText().contains("Purple") || webDriver.getCurrentUrl().contains("purple"));
+        assertTrue((phoneTitle.getText().contains("Purple") && phoneTitle.getText().contains("Xperia"))
+                || (webDriver.getCurrentUrl().contains("purple") && webDriver.getCurrentUrl().contains("xperia")));
     }
 
 }
