@@ -23,6 +23,7 @@ public class GoogleGmailTest extends WebDriverTestBase{
 
     @Test
     public void loginTest(){
+        WebDriverWait wait = new WebDriverWait(webDriver, 20); //?????
         //Переходим по адресу гугла
         webDriver.get(link);
         //Ищем линк с текстом Почта
@@ -42,13 +43,14 @@ public class GoogleGmailTest extends WebDriverTestBase{
         nextButton.click();
         //Ищем и заполняем поле пароля
         By passwordFieldLocator=By.xpath("//input[@type=\"password\"]");
-        WebDriverWait wait = new WebDriverWait(webDriver, 10);
         WebElement passwordField = wait.until(ExpectedConditions.elementToBeClickable(passwordFieldLocator));
         passwordField.sendKeys(password);
         passwordField.sendKeys(Keys.ENTER);
         //Проверяем что мы на странице с почтой
-        System.out.println(webDriver.getCurrentUrl());
-        //assertTrue(webDriver.getCurrentUrl().contains("mail.google.com/mail/"));
+        By incomeMailLocator = By.cssSelector("a[href='https://mail.google.com/mail/?tab=wm#inbox']");
+        WebElement incomeMailButton = wait.until(ExpectedConditions.elementToBeClickable(incomeMailLocator));
+        assertTrue(webDriver.getCurrentUrl().contains("mail.google.com/mail/"));
+
     }
 
 
